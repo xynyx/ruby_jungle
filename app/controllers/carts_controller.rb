@@ -17,6 +17,10 @@ class CartsController < ApplicationController
     redirect_to :back
   end
 
+  # quantity = params[:quantity].to_i
+
+  # @sold_out = quantity == 0 ? true : false
+
   private
 
   def modify_cart_delta(product_id, delta)
