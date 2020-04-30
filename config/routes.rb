@@ -22,8 +22,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  # get '/signup' => 'users#new'
-  # post '/users' => 'users#create'
+  resources :sessions, only: [:create, :new, :destroy]
+
+  # This format will allow you rename the URL routes (eg. users/new becomes /signup)
+
+  #  get '/signup' => 'users#new'
+  #  post '/users' => 'users#create'
+
+
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
