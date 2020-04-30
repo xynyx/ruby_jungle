@@ -1,0 +1,7 @@
+<h1>All Categories</h1>
+
+<% @categories.each do |category| %>
+  <h4><%=category.name%></h4>
+<% end %>
+
+<%= link_to '+ New Category', [:new, :admin, :category], class: 'btn btn-info'%>
