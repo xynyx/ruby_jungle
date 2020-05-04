@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is invalid when password confirmation does not match' do
-      subject.password_confirmation = "1"
+      subject.password_confirmation = "1123513"
       expect(subject).to be_invalid
     end
 
@@ -41,6 +41,11 @@ RSpec.describe User, type: :model do
       subject.last_name = nil
       expect(subject).to be_invalid
     end
-
+    
+    it "is invalid when password length is < 4" do
+      subject.password = "1"
+      subject.password_confirmation = "1"
+      expect(subject).to be_invalid
+    end
   end
 end
