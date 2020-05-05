@@ -56,27 +56,30 @@ RSpec.describe User, type: :model do
 
     it "should be valid if credentials match" do
       user = User.authenticate_with_credentials(subject.email, subject.password)
-      expect(user).to be_truthy
+      expect(user).to be_instance_of(User)
+      expect(user.id).to eq(subject.id)
     end
 
     it "should be invalid if password doesn't match" do
       user = User.authenticate_with_credentials(subject.email, "239529")
-      expect(user).to be_falsey
+      expect(user).not_to be_instance_of(User)
     end
 
     it "should be invalid if email doesn't match" do
       user = User.authenticate_with_credentials("matt.taylor@gmail.com", subject.password)
-      expect(user).to be_falsey
+       expect(user).not_to be_instance_of(User)
     end
 
     it "should be valid if email has trailing spaces" do
       user = User.authenticate_with_credentials("  TEST@TEST.COM  ", subject.password)
-      expect(user).to be_truthy
+      expect(user).to be_instance_of(User)
+      expect(user.id).to eq(subject.id)
     end
 
     it "should be valid if email cases do not match exactly" do
       user = User.authenticate_with_credentials("test@test.com", subject.password)
-      expect(user).to be_truthy
+      expect(user).to be_instance_of(User)
+      expect(user.id).to eq(subject.id)
     end
   end
 end
