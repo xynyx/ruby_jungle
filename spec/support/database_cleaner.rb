@@ -1,5 +1,6 @@
 # From DB Cleaner README
 
+
 RSpec.configure do |config|
 
   config.before(:suite) do
