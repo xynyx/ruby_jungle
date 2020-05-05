@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   
   subject {
-    described_class.new(email: "TEST@TEST.COM", first_name: "TEST", last_name: "McTESTERSON", password: "1234", password_confirmation: "1234")
+    described_class.new(email: "TEST@TEST.COM", first_name: "TEST", last_name: "McTESTERSON", password: "12345", password_confirmation: "12345")
   }
   
   describe 'Validations' do
@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
 
     it "is invalid when email already exists in the database (case insensitive)" do
       subject.save!
-      @user = User.new(email: "test@test.COM", first_name: "TEST", last_name: "McTESTERSON", password: "1234", password_confirmation: "1234")
+      @user = User.new(email: "test@test.COM", first_name: "TEST", last_name: "McTESTERSON", password: "12345", password_confirmation: "1234")
       expect(@user).to be_invalid
     end
 
@@ -46,6 +46,37 @@ RSpec.describe User, type: :model do
       subject.password = "1"
       subject.password_confirmation = "1"
       expect(subject).to be_invalid
+    end
+  end
+
+  describe ".authenticate_with_credentials" do
+    before(:each) do 
+      subject.save!
+    end
+
+    it "should be valid if credentials match" do
+      user = User.authenticate_with_credentials(subject.email, subject.password)
+      expect(user).to be_truthy
+    end
+
+    it "should be invalid if password doesn't match" do
+      user = User.authenticate_with_credentials(subject.email, "239529")
+      expect(user).to be_falsey
+    end
+
+    it "should be invalid if email doesn't match" do
+      user = User.authenticate_with_credentials("matt.taylor@gmail.com", subject.password)
+      expect(user).to be_falsey
+    end
+
+    it "should be valid if email has trailing spaces" do
+      user = User.authenticate_with_credentials("  TEST@TEST.COM  ", subject.password)
+      expect(user).to be_truthy
+    end
+
+    it "should be valid if email cases do not match exactly" do
+      user = User.authenticate_with_credentials("test@test.com", subject.password)
+      expect(user).to be_truthy
     end
   end
 end

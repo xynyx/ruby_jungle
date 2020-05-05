@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def self.authenticate_with_credentials(email, password)
-    @user = User.find_by_email(email)
-    @user.authenticate(@user.password)
-    @user
+    @user = User.where("LOWER(email) = ?", email.downcase.strip)[0].try(:authenticate, password)
   end
-  
 end
