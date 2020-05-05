@@ -88,3 +88,7 @@ main section.products-show {
 }
 
 
+article:nth-child(1) > footer {
+  background-color: red !important;
+}
+
