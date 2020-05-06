@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your order has been placed!</h1>
+    <p>
+      Thanks for ordering with us, friend.
+      <br>
+    </p>
+    <p>
+    Total: <%= number_to_currency(@order.total) %>
+    </p>
+    <br>
+    <p>
+      <strong>Items Ordered:</strong>
+      <% @items.each do |item| %>
+        <p><%=item.product.name%></p>
+      <% end %>
+    </p>
+    <br>
+    <p>Thanks for the order and have a great day!</p>
+  </body>
+</html>
