@@ -134,11 +134,22 @@ cat3.products.create!({
 
 ## REVIEWS
 
+puts "Re-creating Reviews..."
+
+Review.destroy_all
+
 Review.create!({
   product_id: 1,
   user_id: 1,
   description: "This shirt is awesome!",
   rating: 5
+})
+
+Review.create!({
+  product_id: 1,
+  user_id: 2,
+  description: "This shirt is okay",
+  rating: 3
 })
 
 Review.create!({
