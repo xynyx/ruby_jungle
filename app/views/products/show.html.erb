@@ -27,6 +27,21 @@
     </div>
 
     <div class="row">
+    <% if current_user %>
+     <div class="col-sm-8">
+      <h3>Add New Review</h3>
+      <%= form_for [@product, @review] do |f| %>
+          <div>
+           <strong>Rating</strong>
+            <%= select_tag(:rating, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]])) %>
+          </div>
+          <strong>Description</strong> (optional): <%= f.text_field :description %>
+          <div><%= f.submit %></div>
+      <% end %>
+     </div>
+     <% end %>
+
+
       <div class="col-sm-8">
         <h3>User Reviews</h3>
          <% @reviews.each do |review| %>
