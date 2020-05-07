@@ -4,6 +4,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => "https://hidden-plateau-77106.herokuapp.com/" }
 config.action_mailer.delivery_method = :smtp
 
+config.action_mailer.smtp_settings = {
+    port:                 25,
+
+}
 
 
   # Code is not reloaded between requests.
