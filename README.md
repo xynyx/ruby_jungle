@@ -4,7 +4,9 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Screenshots
 
-![]()
+![Products](https://github.com/xynyx/ruby_jungle/blob/master/docs/products.png)
+![Show Product](https://github.com/xynyx/ruby_jungle/blob/master/docs/show.png)
+![Payment](https://github.com/xynyx/ruby_jungle/blob/master/docs/payment.png)
 
 
 ## Setup
